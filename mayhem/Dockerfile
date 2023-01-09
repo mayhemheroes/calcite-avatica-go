@@ -8,8 +8,8 @@ RUN go install github.com/dvyukov/go-fuzz/go-fuzz@latest github.com/dvyukov/go-f
 RUN go get github.com/dvyukov/go-fuzz/go-fuzz-dep
 RUN apt update && apt install -y clang
 
-RUN go-fuzz-build -libfuzzer -o fuzz.a && \
-    clang -fsanitize=fuzzer fuzz.a -o fuzz.libfuzzer
+RUN go-fuzz-build -libfuzzer -o fuzzOpen.a && \
+    clang -fsanitize=fuzzer fuzzOpen.a -o fuzzOpen.libfuzzer
 
 FROM debian:bookworm-slim
-COPY --from=builder /calcite-avatica-go/mayhem/fuzz.libfuzzer /
+COPY --from=builder /calcite-avatica-go/mayhem/fuzzOpen.libfuzzer /

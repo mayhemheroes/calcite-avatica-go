@@ -1,4 +1,4 @@
-package fuzz
+package fuzzOpen
 
 import "github.com/apache/calcite-avatica-go/v5"
 
